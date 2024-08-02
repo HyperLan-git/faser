@@ -4,6 +4,10 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="IRbPzB" name="Fased">
     <GROUP id="{44BCDEC5-5FB9-EE5A-5196-CD4D90010E59}" name="Source">
+      <FILE id="m1IS3x" name="BiquadFilter.cpp" compile="1" resource="0"
+            file="Source/BiquadFilter.cpp"/>
+      <FILE id="zWNOzP" name="BiquadFilter.hpp" compile="0" resource="0"
+            file="Source/BiquadFilter.hpp"/>
       <FILE id="u3A7OH" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="moHi8d" name="PluginProcessor.h" compile="0" resource="0"

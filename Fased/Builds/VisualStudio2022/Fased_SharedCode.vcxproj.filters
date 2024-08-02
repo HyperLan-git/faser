@@ -697,6 +697,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\BiquadFilter.cpp">
+      <Filter>Fased\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Fased\Source</Filter>
     </ClCompile>
@@ -3561,6 +3564,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\BiquadFilter.hpp">
+      <Filter>Fased\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>Fased\Source</Filter>
     </ClInclude>

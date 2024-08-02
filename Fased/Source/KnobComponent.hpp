@@ -5,7 +5,7 @@
 class ParamListener : public juce::Slider::Listener,
                       public juce::AudioProcessorParameter::Listener {
    public:
-    ParamListener(juce::RangedAudioParameter* param, juce::Slider* slider);
+    ParamListener(juce::RangedAudioParameter* param, juce::Slider& slider);
 
     ~ParamListener() override;
 
@@ -22,7 +22,7 @@ class ParamListener : public juce::Slider::Listener,
 
    private:
     juce::RangedAudioParameter* param;
-    juce::Slider* slider;
+    juce::Slider& slider;
 };
 
 class KnobComponent : public juce::Component {

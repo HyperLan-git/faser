@@ -13,9 +13,13 @@ class FasedAudioProcessorEditor : public juce::AudioProcessorEditor {
     void resized() override;
 
    private:
+    void onSelectFilterType();
+
     FasedAudioProcessor& audioProcessor;
 
-    KnobComponent freq, Q;
+    KnobComponent freq, Q, gain;
+
+    juce::ComboBox filterType;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FasedAudioProcessorEditor)
 };

@@ -15,10 +15,15 @@ FasedAudioProcessor::FasedAudioProcessor()
 #endif
       ,
       freq(new juce::AudioParameterFloat({"frequency", 1}, "Frequency", 1,
-                                         20000, .1f)),
-      Q(new juce::AudioParameterFloat({"q value", 1}, "Q", .001f, 5, .001f)) {
+                                         20000, 500)),
+      Q(new juce::AudioParameterFloat({"Q", 1}, "Q value", .01f, 20, .707f)),
+      gain(new juce::AudioParameterFloat({"gain", 1}, "Gain", -30, 30, 6)),
+      type(new juce::AudioParameterChoice({"type", 1}, "Filter type",
+                                          BIQUAD_TYPES, 1)) {
     addParameter(freq);
     addParameter(Q);
+    addParameter(gain);
+    addParameter(type);
 }
 
 FasedAudioProcessor::~FasedAudioProcessor() {}
@@ -99,37 +104,6 @@ bool FasedAudioProcessor::isBusesLayoutSupported(
 }
 #endif
 
-struct biquad {
-    float a0;
-    float a1;
-    float a2;
-    float b1;
-    float b2;
-} params;
-
-float biquadFilter(float xn, float& x1, float& x2, float& y1, float& y2,
-                   struct biquad params) {
-    float yn = params.a0 * xn + params.a1 * x1 + params.a2 * x2 -
-               params.b1 * y1 - params.b2 * y2;
-    x2 = x1;
-    x1 = xn;
-    y2 = y1;
-    y1 = yn;
-    return yn;
-}
-
-float pi = juce::MathConstants<float>().pi;
-
-float processAllPass(float xn, float fc, float Q, float& x1, float& x2,
-                     float& y1, float& y2) {
-    float d = -std::cos(2 * pi * fc / 44100);
-    float c =
-        (std::tan(pi * 1000 / 44100) - 1) / (std::tan(pi * 1000 / 44100) + 1);
-    return biquadFilter(
-        xn, x1, x2, y1, y2,
-        {.a0 = -c, .a1 = d * (1 - c), .a2 = 1, .b1 = d * (1 - c), .b2 = -c});
-}
-
 void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
                                        juce::MidiBuffer& midiMessages) {
     (void)midiMessages;
@@ -148,10 +122,21 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
 
     float fc = *freq;
     float q = *Q;
-    for (int i = 0; i < samples; i++) {
-        l[i] = processAllPass(l[i], fc, q, lx1, lx2, ly1, ly2);
-        r[i] = processAllPass(r[i], fc, q, rx1, rx2, ry1, ry2);
+    float g = *gain;
+    enum BiquadFilterType t = (enum BiquadFilterType)(type->getIndex() + 1);
+
+    filter.setParameters(t, {.f = fc, .Q = q, .gain = g});
+
+    for (int i = 0; i < FILTERS; i++) {
+        struct SOState &left = this->states[i],
+                       &right = this->states[i + FILTERS];
+        filter.processBlock(l, samples, left);
+        filter.processBlock(r, samples, right);
     }
+}
+
+void FasedAudioProcessor::setFilterType(enum BiquadFilterType type) {
+    this->type->setValueNotifyingHost(this->type->convertTo0to1((float)type));
 }
 
 bool FasedAudioProcessor::hasEditor() const { return true; }
@@ -164,6 +149,8 @@ void FasedAudioProcessor::getStateInformation(juce::MemoryBlock& destData) {
     juce::MemoryOutputStream stream(destData, true);
     stream.writeFloat(GET_PARAM_NORMALIZED(freq));
     stream.writeFloat(GET_PARAM_NORMALIZED(Q));
+    stream.writeFloat(GET_PARAM_NORMALIZED(gain));
+    stream.writeInt(GET_PARAM_NORMALIZED(type));
 }
 
 void FasedAudioProcessor::setStateInformation(const void* data,
@@ -172,6 +159,8 @@ void FasedAudioProcessor::setStateInformation(const void* data,
                                    false);
     freq->setValueNotifyingHost(stream.readFloat());
     Q->setValueNotifyingHost(stream.readFloat());
+    gain->setValueNotifyingHost(stream.readFloat());
+    type->setValueNotifyingHost(stream.readFloat());
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() {

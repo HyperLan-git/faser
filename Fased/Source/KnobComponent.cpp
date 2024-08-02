@@ -4,14 +4,14 @@
     param->setValueNotifyingHost(param->convertTo0to1(value))
 
 ParamListener::ParamListener(juce::RangedAudioParameter* param,
-                             juce::Slider* slider)
+                             juce::Slider& slider)
     : param(param), slider(slider) {
-    slider->addListener(this);
+    slider.addListener(this);
     param->addListener(this);
 }
 
 ParamListener::~ParamListener() {
-    slider->removeListener(this);
+    slider.removeListener(this);
     param->removeListener(this);
 }
 
@@ -32,7 +32,7 @@ void ParamListener::sliderDragEnded(juce::Slider* s) {
 void ParamListener::parameterValueChanged(int parameterIndex, float newValue) {
     (void)parameterIndex;
     (void)newValue;
-    slider->setValue(param->convertFrom0to1(param->getValue()));
+    slider.setValue(param->convertFrom0to1(param->getValue()));
 }
 
 void ParamListener::parameterGestureChanged(int parameterIndex,
@@ -42,7 +42,7 @@ void ParamListener::parameterGestureChanged(int parameterIndex,
 }
 
 KnobComponent::KnobComponent(juce::RangedAudioParameter* param, double step)
-    : paramListener(param, &knob), label() {
+    : paramListener(param, knob), label() {
     addAndMakeVisible(knob);
     addAndMakeVisible(label);
 
@@ -71,6 +71,6 @@ void KnobComponent::paint(juce::Graphics& g) {
 double KnobComponent::getValue() const { return knob.getValue(); }
 
 void KnobComponent::resized() {
-    label.setBounds({0, 0, 100, 20});
+    label.setBounds(0, 0, 100, 20);
     knob.setBounds(0, 20, 100, 80);
 }

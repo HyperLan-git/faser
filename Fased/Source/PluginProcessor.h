@@ -1,10 +1,13 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "BiquadFilter.hpp"
 
 #define GET_PARAM_NORMALIZED(param) (param->convertTo0to1(*param))
 #define SET_PARAM_NORMALIZED(param, value) \
     param->setValueNotifyingHost(param->convertTo0to1(value))
+
+#define FILTERS 1
 
 class FasedAudioProcessor : public juce::AudioProcessor {
    public:
@@ -41,12 +44,19 @@ class FasedAudioProcessor : public juce::AudioProcessor {
 
     inline juce::AudioParameterFloat* getFreqParam() { return freq; }
     inline juce::AudioParameterFloat* getQParam() { return Q; }
+    inline juce::AudioParameterFloat* getGainParam() { return gain; }
+
+    inline juce::AudioParameterChoice* getTypeParam() { return type; }
+
+    void setFilterType(enum BiquadFilterType type);
 
    private:
-    float lx1 = 0, lx2 = 0, rx1 = 0, rx2 = 0;
-    float ly1 = 0, ly2 = 0, ry1 = 0, ry2 = 0;
+    BiquadFilter filter;
 
-    juce::AudioParameterFloat *freq, *Q;
+    struct SOState states[FILTERS * 2] = {};
+
+    juce::AudioParameterFloat *freq, *Q, *gain;
+    juce::AudioParameterChoice* type;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FasedAudioProcessor)
 };
