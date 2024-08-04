@@ -2828,11 +2828,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FreqResponseComponent.hpp"/>
-    <ClInclude Include="..\..\Source\SelectorComponent.hpp"/>
+    <ClInclude Include="..\..\Source\PluginEditor.hpp"/>
+    <ClInclude Include="..\..\Source\PluginProcessor.hpp"/>
     <ClInclude Include="..\..\Source\BiquadFilter.hpp"/>
-    <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\KnobComponent.hpp"/>
-    <ClInclude Include="..\..\Source\PluginEditor.h"/>
+    <ClInclude Include="..\..\Source\SelectorComponent.hpp"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

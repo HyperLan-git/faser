@@ -42,16 +42,20 @@ void FreqResponseComponent::paint(juce::Graphics& g) {
     p2.preallocateSpace(w);
     p2.startNewSubPath({-200, h / 2.f});
     for (int x = 0; x < w; x++) {
-        float mag = 20 * std::log10(std::abs(values[x])),
-              phase = std::arg(values[x]);
-        int y = h / 2 - h * mag / MAX_DB / 2,
-            y2 = h / 2 - h * phase / juce::MathConstants<float>::pi / 2;
         if (values[x].real() == 0 && values[x].imag() == 0) {
-            y = h + 20;
-            y2 = h + 20;
+            p.lineTo(x, h + 20);
+            p2.lineTo(x, h + 20);
+            continue;
         }
+        const float mag = 20 * std::log10(std::abs(values[x]));
+        const float phase = std::arg(values[x]);
+        const int y = h / 2 - h * mag / MAX_DB / 2;
+        const int y2 = h / 2 - h * phase / juce::MathConstants<float>::pi / 2;
         p.lineTo(x, y);
-        p2.lineTo(x, y2);
+        if (y > 2 * h)
+            p2.lineTo(x, h + 20);
+        else
+            p2.lineTo(x, y2);
     }
     p.lineTo(w + 200, h / 2.f);
     p.lineTo(w, h + 20);

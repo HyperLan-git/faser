@@ -1,5 +1,4 @@
-#include "PluginProcessor.h"
-#include "PluginEditor.h"
+#include "PluginEditor.hpp"
 
 FasedAudioProcessorEditor::FasedAudioProcessorEditor(FasedAudioProcessor& p)
     : AudioProcessorEditor(&p),

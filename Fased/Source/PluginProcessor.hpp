@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "BiquadFilter.hpp"
+#include "PluginEditor.hpp"
 
 #define GET_PARAM_NORMALIZED(param) (param->convertTo0to1(*param))
 #define SET_PARAM_NORMALIZED(param, value) \

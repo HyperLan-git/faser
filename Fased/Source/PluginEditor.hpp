@@ -1,10 +1,13 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "PluginProcessor.h"
+
+#include "PluginProcessor.hpp"
 #include "KnobComponent.hpp"
 #include "FreqResponseComponent.hpp"
 #include "SelectorComponent.hpp"
+
+class FasedAudioProcessor;
 
 class FasedAudioProcessorEditor : public juce::AudioProcessorEditor {
    public:

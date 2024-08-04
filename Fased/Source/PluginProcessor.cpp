@@ -1,5 +1,4 @@
-#include "PluginProcessor.h"
-#include "PluginEditor.h"
+#include "PluginProcessor.hpp"
 
 FasedAudioProcessor::FasedAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations

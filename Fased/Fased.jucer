@@ -4,29 +4,30 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="IRbPzB" name="Fased">
     <GROUP id="{44BCDEC5-5FB9-EE5A-5196-CD4D90010E59}" name="Source">
+      <FILE id="DKJC3o" name="FreqResponseComponent.hpp" compile="0" resource="0"
+            file="Source/FreqResponseComponent.hpp"/>
+      <FILE id="mRqfdX" name="PluginEditor.hpp" compile="0" resource="0"
+            file="Source/PluginEditor.hpp"/>
+      <FILE id="r62gG3" name="PluginProcessor.hpp" compile="0" resource="0"
+            file="Source/PluginProcessor.hpp"/>
+      <FILE id="wKJNlt" name="BiquadFilter.hpp" compile="0" resource="0"
+            file="Source/BiquadFilter.hpp"/>
+      <FILE id="uul9WX" name="KnobComponent.hpp" compile="0" resource="0"
+            file="Source/KnobComponent.hpp"/>
+      <FILE id="h6hx7i" name="SelectorComponent.hpp" compile="0" resource="0"
+            file="Source/SelectorComponent.hpp"/>
       <FILE id="nkbU73" name="FreqResponseComponent.cpp" compile="1" resource="0"
             file="Source/FreqResponseComponent.cpp"/>
-      <FILE id="pshHSn" name="FreqResponseComponent.hpp" compile="0" resource="0"
-            file="Source/FreqResponseComponent.hpp"/>
       <FILE id="GuhDNY" name="SelectorComponent.cpp" compile="1" resource="0"
             file="Source/SelectorComponent.cpp"/>
-      <FILE id="wumvJf" name="SelectorComponent.hpp" compile="0" resource="0"
-            file="Source/SelectorComponent.hpp"/>
       <FILE id="m1IS3x" name="BiquadFilter.cpp" compile="1" resource="0"
             file="Source/BiquadFilter.cpp"/>
-      <FILE id="zWNOzP" name="BiquadFilter.hpp" compile="0" resource="0"
-            file="Source/BiquadFilter.hpp"/>
       <FILE id="u3A7OH" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="moHi8d" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
       <FILE id="xaWa9u" name="KnobComponent.cpp" compile="1" resource="0"
             file="Source/KnobComponent.cpp"/>
-      <FILE id="yLq54j" name="KnobComponent.hpp" compile="0" resource="0"
-            file="Source/KnobComponent.hpp"/>
       <FILE id="cqBUg0" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="J6LWml" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
