@@ -4,6 +4,7 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="IRbPzB" name="Fased">
     <GROUP id="{44BCDEC5-5FB9-EE5A-5196-CD4D90010E59}" name="Source">
+      <FILE id="bOWOQu" name="Looknfeel.hpp" compile="0" resource="0" file="Source/Looknfeel.hpp"/>
       <FILE id="DKJC3o" name="FreqResponseComponent.hpp" compile="0" resource="0"
             file="Source/FreqResponseComponent.hpp"/>
       <FILE id="mRqfdX" name="PluginEditor.hpp" compile="0" resource="0"
@@ -18,6 +19,7 @@
             file="Source/SelectorComponent.hpp"/>
       <FILE id="nkbU73" name="FreqResponseComponent.cpp" compile="1" resource="0"
             file="Source/FreqResponseComponent.cpp"/>
+      <FILE id="BDxwN6" name="Looknfeel.cpp" compile="1" resource="0" file="Source/Looknfeel.cpp"/>
       <FILE id="GuhDNY" name="SelectorComponent.cpp" compile="1" resource="0"
             file="Source/SelectorComponent.cpp"/>
       <FILE id="m1IS3x" name="BiquadFilter.cpp" compile="1" resource="0"

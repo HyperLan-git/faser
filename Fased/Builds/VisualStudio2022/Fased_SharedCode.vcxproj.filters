@@ -700,6 +700,9 @@
     <ClCompile Include="..\..\Source\FreqResponseComponent.cpp">
       <Filter>Fased\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Looknfeel.cpp">
+      <Filter>Fased\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SelectorComponent.cpp">
       <Filter>Fased\Source</Filter>
     </ClCompile>
@@ -3570,6 +3573,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Looknfeel.hpp">
+      <Filter>Fased\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\FreqResponseComponent.hpp">
       <Filter>Fased\Source</Filter>
     </ClInclude>

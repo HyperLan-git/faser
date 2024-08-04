@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\FreqResponseComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Looknfeel.cpp"/>
     <ClCompile Include="..\..\Source\SelectorComponent.cpp"/>
     <ClCompile Include="..\..\Source\BiquadFilter.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
@@ -2827,6 +2828,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Looknfeel.hpp"/>
     <ClInclude Include="..\..\Source\FreqResponseComponent.hpp"/>
     <ClInclude Include="..\..\Source\PluginEditor.hpp"/>
     <ClInclude Include="..\..\Source\PluginProcessor.hpp"/>

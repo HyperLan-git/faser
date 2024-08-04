@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "Looknfeel.hpp"
 
 class ParamListener : public juce::Slider::Listener,
                       public juce::AudioProcessorParameter::Listener {
@@ -39,7 +40,7 @@ class KnobComponent : public juce::Component {
    private:
     juce::Slider knob;
     juce::Label label;
-    juce::LookAndFeel_V4 lf;
+    Looknfeel lf;
 
     ParamListener paramListener;
 };

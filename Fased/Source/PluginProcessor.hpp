@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JuceHeader.h>
+#include "JuceHeader.h"
 #include "BiquadFilter.hpp"
 #include "PluginEditor.hpp"
 
@@ -63,6 +63,8 @@ class FasedAudioProcessor : public juce::AudioProcessor {
     juce::AudioParameterFloat *freq, *Q, *gain;
     juce::AudioParameterInt* filters;
     juce::AudioParameterChoice* type;
+
+    int prevFilters = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FasedAudioProcessor)
 };

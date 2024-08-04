@@ -1,6 +1,7 @@
 #pragma once
 
-#include <JuceHeader.h>
+#include "JuceHeader.h"
+#include "Looknfeel.hpp"
 
 class SelectorListener : public juce::ComboBox::Listener,
                          public juce::AudioProcessorParameter::Listener {
@@ -34,6 +35,8 @@ class SelectorComponent : public juce::Component {
    private:
     juce::ComboBox comboBox;
     juce::Label label;
+
+    Looknfeel lf;
 
     SelectorListener listener;
 };

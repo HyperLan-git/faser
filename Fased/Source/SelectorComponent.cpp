@@ -6,13 +6,24 @@ SelectorComponent::SelectorComponent(juce::AudioParameterChoice* param)
     this->addAndMakeVisible(this->comboBox);
     this->addAndMakeVisible(this->label);
 
+    this->label.setJustificationType(juce::Justification::centred);
+
+    this->comboBox.setLookAndFeel(&lf);
+    this->comboBox.setColour(juce::ComboBox::buttonColourId,
+                             juce::Colours::grey.brighter());
+    this->comboBox.setColour(juce::ComboBox::backgroundColourId,
+                             juce::Colours::grey.contrasting());
+    this->comboBox.setJustificationType(juce::Justification::centred);
+
     this->comboBox.addItemList(param->getAllValueStrings(), 1);
     this->comboBox.setSelectedId(param->getIndex() + 1);
 
     setSize(200, 40);
 }
 
-SelectorComponent::~SelectorComponent() {}
+SelectorComponent::~SelectorComponent() {
+    this->comboBox.setLookAndFeel(nullptr);
+}
 
 void SelectorComponent::paint(juce::Graphics& g) {
     g.fillAll(juce::Colours::black);

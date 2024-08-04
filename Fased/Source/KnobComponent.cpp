@@ -48,8 +48,10 @@ KnobComponent::KnobComponent(juce::RangedAudioParameter* param, double step)
     addAndMakeVisible(label);
 
     label.attachToComponent(&knob, false);
+    label.setJustificationType(juce::Justification::centred);
 
     knob.setLookAndFeel(&lf);
+    knob.setColour(juce::Slider::thumbColourId, juce::Colours::grey.brighter());
     knob.setSliderStyle(juce::Slider::SliderStyle::Rotary);
     knob.setTextBoxStyle(juce::Slider::TextBoxAbove, false, 100, 20);
 

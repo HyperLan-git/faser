@@ -117,6 +117,7 @@ OBJECTS_STANDALONE_PLUGIN := \
 
 OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/FreqResponseComponent_b9068b85.o \
+  $(JUCE_OBJDIR)/Looknfeel_d38526b6.o \
   $(JUCE_OBJDIR)/SelectorComponent_72293e3f.o \
   $(JUCE_OBJDIR)/BiquadFilter_a6b254af.o \
   $(JUCE_OBJDIR)/PluginProcessor_a059e380.o \
@@ -207,6 +208,11 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o: ../../Juc
 $(JUCE_OBJDIR)/FreqResponseComponent_b9068b85.o: ../../Source/FreqResponseComponent.cpp
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling FreqResponseComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Looknfeel_d38526b6.o: ../../Source/Looknfeel.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling Looknfeel.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SelectorComponent_72293e3f.o: ../../Source/SelectorComponent.cpp
