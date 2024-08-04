@@ -139,6 +139,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\FreqResponseComponent.cpp"/>
+    <ClCompile Include="..\..\Source\SelectorComponent.cpp"/>
     <ClCompile Include="..\..\Source\BiquadFilter.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\KnobComponent.cpp"/>
@@ -2825,6 +2827,8 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\FreqResponseComponent.hpp"/>
+    <ClInclude Include="..\..\Source\SelectorComponent.hpp"/>
     <ClInclude Include="..\..\Source\BiquadFilter.hpp"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\KnobComponent.hpp"/>

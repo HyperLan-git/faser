@@ -3,6 +3,8 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "KnobComponent.hpp"
+#include "FreqResponseComponent.hpp"
+#include "SelectorComponent.hpp"
 
 class FasedAudioProcessorEditor : public juce::AudioProcessorEditor {
    public:
@@ -13,13 +15,12 @@ class FasedAudioProcessorEditor : public juce::AudioProcessorEditor {
     void resized() override;
 
    private:
-    void onSelectFilterType();
-
     FasedAudioProcessor& audioProcessor;
 
-    KnobComponent freq, Q, gain;
+    KnobComponent freq, Q, gain, filters;
+    SelectorComponent filterType;
 
-    juce::ComboBox filterType;
+    FreqResponseComponent graph;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FasedAudioProcessorEditor)
 };

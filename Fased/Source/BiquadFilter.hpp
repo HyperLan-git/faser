@@ -2,7 +2,6 @@
 
 #include <cmath>
 #include <string>
-#include "JuceHeader.h"
 
 enum BiquadFilterType {
     UNKOWN = 0,
@@ -16,12 +15,6 @@ enum BiquadFilterType {
     HIGHSHELF = 8
 };
 
-constexpr const char* FILTER_TYPES[] = {"Allpass",  "Lowpass",  "Highpass",
-                                        "Bandpass", "Notch",    "Peak",
-                                        "Lowshelf", "Highshelf"};
-
-const juce::StringArray BIQUAD_TYPES = juce::StringArray(FILTER_TYPES);
-
 struct BiquadFilterParams {
     float f;
     float Q;
@@ -33,6 +26,16 @@ struct SOState {
 };
 
 struct BiquadFilterCoefficients {
+    bool operator==(BiquadFilterCoefficients other) const {
+        return this->a0 == other.a0 && this->a1 == other.a1 &&
+               this->a2 == other.a2 && this->b0 == other.b0 &&
+               this->b1 == other.b1 && this->b2 == other.b2;
+    }
+
+    inline bool operator!=(BiquadFilterCoefficients other) const {
+        return !this->operator==(other);
+    }
+
     float b0 = 1;
     float b1 = 0;
     float b2 = 0;

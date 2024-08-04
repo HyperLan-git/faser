@@ -1,7 +1,5 @@
 #include "BiquadFilter.hpp"
 
-#define PI 3.141592653589793f
-
 BiquadFilter::BiquadFilter(int sampleRate) : sampleRate(sampleRate) {}
 
 BiquadFilter::BiquadFilter(struct BiquadFilterCoefficients coeffs,
@@ -35,7 +33,7 @@ void BiquadFilter::updateParameters() {
 
     const float A = std::pow(10, this->parameters.gain / 40),
                 sqrtA = std::sqrt(A);
-    const float om = PI * 2 * this->parameters.f / this->sampleRate;
+    const float om = M_PI * 2 * this->parameters.f / this->sampleRate;
     const float a = std::sin(om) / (2 * this->parameters.Q);
     const float cs = std::cos(om), sn = std::sin(om);
     switch (this->type) {
@@ -99,10 +97,10 @@ void BiquadFilter::updateParameters() {
         case HIGHSHELF:
             this->coefficients = {
                 .b0 = A * ((A + 1) + (A - 1) * cs + 2 * sqrtA * a),
-                .b1 = -2 * A * ((A - 1) - (A + 1) * cs),
+                .b1 = -2 * A * ((A - 1) + (A + 1) * cs),
                 .b2 = A * ((A + 1) + (A - 1) * cs - 2 * sqrtA * a),
                 .a0 = (A + 1) - (A - 1) * cs + 2 * sqrtA * a,
-                .a1 = 2 * ((A - 1) + (A + 1) * cs),
+                .a1 = 2 * ((A - 1) - (A + 1) * cs),
                 .a2 = (A + 1) - (A - 1) * cs - 2 * sqrtA * a};
             break;
         default:

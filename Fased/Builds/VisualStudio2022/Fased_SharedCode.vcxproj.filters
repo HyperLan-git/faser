@@ -697,6 +697,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\FreqResponseComponent.cpp">
+      <Filter>Fased\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SelectorComponent.cpp">
+      <Filter>Fased\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BiquadFilter.cpp">
       <Filter>Fased\Source</Filter>
     </ClCompile>
@@ -3564,6 +3570,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\FreqResponseComponent.hpp">
+      <Filter>Fased\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SelectorComponent.hpp">
+      <Filter>Fased\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\BiquadFilter.hpp">
       <Filter>Fased\Source</Filter>
     </ClInclude>

@@ -7,7 +7,7 @@
 #define SET_PARAM_NORMALIZED(param, value) \
     param->setValueNotifyingHost(param->convertTo0to1(value))
 
-#define FILTERS 1
+#define MAX_FILTERS 100
 
 class FasedAudioProcessor : public juce::AudioProcessor {
    public:
@@ -46,16 +46,21 @@ class FasedAudioProcessor : public juce::AudioProcessor {
     inline juce::AudioParameterFloat* getQParam() { return Q; }
     inline juce::AudioParameterFloat* getGainParam() { return gain; }
 
+    inline juce::AudioParameterInt* getFiltersParam() { return filters; }
+
     inline juce::AudioParameterChoice* getTypeParam() { return type; }
 
     void setFilterType(enum BiquadFilterType type);
 
+    inline const BiquadFilter& getFilter() const { return filter; }
+
    private:
     BiquadFilter filter;
 
-    struct SOState states[FILTERS * 2] = {};
+    struct SOState states[MAX_FILTERS * 2] = {};
 
     juce::AudioParameterFloat *freq, *Q, *gain;
+    juce::AudioParameterInt* filters;
     juce::AudioParameterChoice* type;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FasedAudioProcessor)

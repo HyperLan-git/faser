@@ -116,6 +116,8 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/FreqResponseComponent_b9068b85.o \
+  $(JUCE_OBJDIR)/SelectorComponent_72293e3f.o \
   $(JUCE_OBJDIR)/BiquadFilter_a6b254af.o \
   $(JUCE_OBJDIR)/PluginProcessor_a059e380.o \
   $(JUCE_OBJDIR)/KnobComponent_fed34708.o \
@@ -201,6 +203,16 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o: ../../Juc
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FreqResponseComponent_b9068b85.o: ../../Source/FreqResponseComponent.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling FreqResponseComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SelectorComponent_72293e3f.o: ../../Source/SelectorComponent.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling SelectorComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BiquadFilter_a6b254af.o: ../../Source/BiquadFilter.cpp
 	-$(V_AT)mkdir -p $(@D)

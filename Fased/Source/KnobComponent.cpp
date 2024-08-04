@@ -42,7 +42,8 @@ void ParamListener::parameterGestureChanged(int parameterIndex,
 }
 
 KnobComponent::KnobComponent(juce::RangedAudioParameter* param, double step)
-    : paramListener(param, knob), label() {
+    : paramListener(param, knob),
+      label(param->getName(128), param->getName(128)) {
     addAndMakeVisible(knob);
     addAndMakeVisible(label);
 
@@ -59,10 +60,7 @@ KnobComponent::KnobComponent(juce::RangedAudioParameter* param, double step)
     setSize(100, 100);
 }
 
-KnobComponent::~KnobComponent() {
-    knob.removeListener(&paramListener);
-    knob.setLookAndFeel(nullptr);
-}
+KnobComponent::~KnobComponent() { knob.setLookAndFeel(nullptr); }
 
 void KnobComponent::paint(juce::Graphics& g) {
     g.fillAll(juce::Colours::black);

@@ -6,41 +6,33 @@ FasedAudioProcessorEditor::FasedAudioProcessorEditor(FasedAudioProcessor& p)
       audioProcessor(p),
       freq(p.getFreqParam()),
       gain(p.getGainParam()),
-      Q(p.getQParam()) {
-    setSize(400, 500);
+      Q(p.getQParam()),
+      filters(p.getFiltersParam()),
+      filterType(p.getTypeParam()),
+      graph(p.getFilter(), p.getFiltersParam()) {
+    setSize(400, 550);
 
     this->addAndMakeVisible(freq);
     this->addAndMakeVisible(Q);
     this->addAndMakeVisible(gain);
+    this->addAndMakeVisible(filters);
     this->addAndMakeVisible(filterType);
-
-    filterType.addItemList(BIQUAD_TYPES, 1);
-
-    filterType.onChange = [this] { this->onSelectFilterType(); };
-    filterType.setSelectedId(p.getTypeParam()->getIndex() + 1);
-    // TODO p.addListener
+    this->addAndMakeVisible(graph);
 }
 
 FasedAudioProcessorEditor::~FasedAudioProcessorEditor() {}
 
 void FasedAudioProcessorEditor::paint(juce::Graphics& g) {
-    g.fillAll(
-        getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
-
-    g.setColour(juce::Colours::white);
-    g.setFont(juce::FontOptions(15.0f));
+    g.fillAll(juce::Colours::grey);
 }
 
 void FasedAudioProcessorEditor::resized() {
     freq.setBounds(0, 0, 100, 100);
     Q.setBounds(100, 0, 100, 100);
     gain.setBounds(200, 0, 100, 100);
+    filters.setBounds(300, 0, 100, 100);
 
-    filterType.setBounds(300, 0, 100, 40);
-}
+    filterType.setBounds(0, 100, 200, 40);
 
-void FasedAudioProcessorEditor::onSelectFilterType() {
-    int id = this->filterType.getSelectedId();
-    if (id == 0) return;
-    this->audioProcessor.setFilterType((enum BiquadFilterType)(id - 1));
+    graph.setBounds(0, 150, 400, 400);
 }
