@@ -138,6 +138,12 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     BiquadFilterParams b = filter.getParameters();
     if (t != filter.getType() || b.f != fc || b.Q != q || b.gain != g ||
         prevFilters != n) {
+        if (prevFilters != n && n < MAX_FILTERS) {
+            std::memset(this->states + n + 1, 0,
+                        sizeof(struct SOState) * (MAX_FILTERS - n - 1));
+            std::memset(this->states + MAX_FILTERS + n, 0,
+                        sizeof(struct SOState) * (MAX_FILTERS - n - 1));
+        }
         filter.setParameters(t, {.f = fc, .Q = q, .gain = g});
         juce::AudioProcessorEditor* editor = this->getActiveEditor();
         if (editor) {
