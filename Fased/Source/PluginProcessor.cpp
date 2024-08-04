@@ -117,13 +117,15 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     const int inputs = getTotalNumInputChannels();
     const int outputs = getTotalNumOutputChannels();
 
-    if (inputs < 2) return;
-    if (outputs < 2) return;
+    if (inputs == 0) return;
+    if (outputs == 0) return;
 
     const int samples = buffer.getNumSamples();
     const double rate = getSampleRate();
 
-    const auto l = buffer.getWritePointer(0), r = buffer.getWritePointer(1);
+    const float* l = buffer.getWritePointer(0);
+    const float* r =
+        inputs < 2 || outputs < 2 ? nullptr : buffer.getWritePointer(1);
 
     const int n = *filters;
     float fc = *freq;
@@ -156,7 +158,7 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
         struct SOState &left = this->states[i],
                        &right = this->states[i + MAX_FILTERS];
         filter.processBlock(l, samples, left);
-        filter.processBlock(r, samples, right);
+        if (r) filter.processBlock(r, samples, right);
     }
     this->prevFilters = n;
 }
