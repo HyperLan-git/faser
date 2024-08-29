@@ -123,6 +123,8 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     const int samples = buffer.getNumSamples();
     const double rate = getSampleRate();
 
+    if (rate != filter.getSampleRate()) filter.setSampleRate(rate);
+
     const float* l = buffer.getWritePointer(0);
     const float* r =
         inputs < 2 || outputs < 2 ? nullptr : buffer.getWritePointer(1);
@@ -154,6 +156,8 @@ void FasedAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
         }
     }
 
+    // TODO think of an optimisation since y1 and y2 of a filter is equal to x1
+    // and x2 of the next
     for (int i = 0; i < n; i++) {
         struct SOState &left = this->states[i],
                        &right = this->states[i + MAX_FILTERS];
