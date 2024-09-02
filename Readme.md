@@ -2,7 +2,7 @@
 The original idea was to have a lot of allpass filters in series just like phase dispersion plugins but I realized during development I could easily implement all the main filter types with it. Interface could be improved but it'll do for now.
 If the plugin stops outputting audio after you stack a lot of low pass or high pass filters, simply decrease the slope until it works again and avoid using Q values above 0.7 in this situation.
 
-![How the plugin currently looks](https://github.com/HyperLan-git/faser/blob/master/screenshot.PNG?raw=true)
+![How the plugin currently looks](https://github.com/HyperLan-git/faser/blob/main/screenshot.PNG?raw=true)
 
 ## Dependencies
 On windows, you just need Visual Studio 2022 and Juce.
