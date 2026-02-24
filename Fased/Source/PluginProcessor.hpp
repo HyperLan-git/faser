@@ -58,7 +58,7 @@ class FasedAudioProcessor : public juce::AudioProcessor {
    private:
     BiquadFilter filter;
 
-    struct SOState states[MAX_FILTERS * 2] = {};
+    float states_l[MAX_FILTERS * 2 + 2] = {}, states_r[MAX_FILTERS * 2 + 2] = {};
 
     juce::AudioParameterFloat *freq, *Q, *gain;
     juce::AudioParameterInt* filters;
